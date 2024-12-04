@@ -11,7 +11,7 @@ const LoanForm = ({ addLoan }) => {
         loanTerm: '',
         interestRate: '',
         collateral: '',
-        status: '',
+        status: 'Pending',
         approvedAmt: ''
     });
 
@@ -28,7 +28,7 @@ const LoanForm = ({ addLoan }) => {
 
         axios.post('http://localhost:5000/api/loan/', {
             loanType: formData.loanType,
-            loanAmount: formData.loanAmt,
+            loanAmount: formData.loanAmount,
             purpose: formData.purpose,
             loanTerm: formData.loanTerm,
             interestRate: formData.interestRate,
@@ -48,23 +48,26 @@ const LoanForm = ({ addLoan }) => {
                 loanTerm: '',
                 interestRate: '',
                 collateral: '',
-                status: '',
+                status: 'Pending',
+                approvedAmt: ''
             })
         })
 
         .catch((error) => {
             console.log('Error requesting loan', error)
-            alert('Error requesting loan. Please try again.')
+            alert(error.response?.data?.message || 'Error requesting loan. Please try again.');
         })
     };
     return (
-        <form onSubmit={handleSubmit} className="w-[600px] h-fit bg-white flex flex-col items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg">
+        <form
+            onSubmit={handleSubmit}
+            className="w-[600px] h-fit bg-white flex flex-col items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg">
             <div className="flex items-center justify-center">
                 <h1 className="text-xl font-bold"> Loan Form </h1>
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                    <label htmlFor="loan-type" className="text-sm font-medium">Loan Type</label>
+                    <label htmlFor="loan-type" className="text-sm font-medium" aria-label="loan type">Loan Type</label>
                 <input 
                     type="text" 
                     id="loan-type" 
@@ -76,7 +79,7 @@ const LoanForm = ({ addLoan }) => {
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                    <label htmlFor="loan-amt" className="text-sm font-medium">Loan Amount</label>
+                    <label htmlFor="loan-amt" className="text-sm font-medium" aria-label="loan amount">Loan Amount</label>
                 <input 
                     type="number" 
                     id="loan-amt" 
@@ -88,7 +91,7 @@ const LoanForm = ({ addLoan }) => {
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                    <label htmlFor="purpose" className="text-sm font-medium">Purpose</label>
+                    <label htmlFor="purpose" className="text-sm font-medium" aria-label="purpose">Purpose</label>
                 <input 
                     type="text" 
                     id="purpose" 
@@ -100,11 +103,12 @@ const LoanForm = ({ addLoan }) => {
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="loan-term" className="text-sm font-medium">Loan Term</label>
+                <label htmlFor="loan-term" className="text-sm font-medium" aria-label="loan term">Loan Term</label>
                 <input 
                     type="number" 
-                    id="Loan-term" 
+                    id="loan-term" 
                     name="loanTerm"
+                    placeholder="Years or Months (m/12)"
                     value={formData.loanTerm}
                     onChange={handleChange}
                     className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
@@ -112,7 +116,7 @@ const LoanForm = ({ addLoan }) => {
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="interest-rate" className="text-sm font-medium">Interest Rate</label>
+                <label htmlFor="interest-rate" className="text-sm font-medium" aria-label="interest rate">Interest Rate (%)</label>
                 <input 
                     type="number" 
                     id="interest-rate" 
@@ -124,29 +128,35 @@ const LoanForm = ({ addLoan }) => {
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="collateral" className="text-sm font-medium">Collateral</label>
+                <label htmlFor="collateral" className="text-sm font-medium" aria-label="collateral">Collateral</label>
                 <input 
-                    type="string" 
+                    type="text" 
                     id="collateral" 
                     name="collateral"
                     value={formData.collateral}
                     onChange={handleChange}
-                    className="w-full h-10 px-2 text-lg uppercase border border-gray-400 rounded-md focus:outline-blue-500" 
+                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
             />
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="status" className="text-sm font-medium">Status</label>
-                <select name="status" id="status" className="w-full h-8">
-                    <option value={formData.status}>Pending</option>
-                    <option value={formData.status}>Approved</option>
-                    <option value={formData.status}>Unverified</option>
-                    <option value={formData.status}>Rejected</option>
+                <label htmlFor="status" className="text-sm font-medium" aria-label="status">Status</label>
+                <select
+                    name="status"
+                    id="status"
+                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500"
+                    value={formData.status}
+                    onChange={handleChange}
+                >
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Unverified">Unverified</option>
+                    <option value="Rejected">Rejected</option>
                 </select>    
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                    <label htmlFor="approved-amt" className="text-sm font-medium">Approved Amount</label>
+                    <label htmlFor="approved-amt" className="text-sm font-medium" aria-label="approved amount">Approved Amount</label>
                 <input 
                     type="number" 
                     id="approved-amt" 

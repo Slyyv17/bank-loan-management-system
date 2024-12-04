@@ -9,6 +9,7 @@ const CustomerData = ({ customers }) => {
             <table className="w-[1000px] bg-white border border-gray-300 rounded-lg">
                 <thead className="bg-gray-100 border-b">
                     <tr>
+                        <th className="px-4 py-2 text-left">ID</th>
                         <th className="px-4 py-2 text-left">Name</th>
                         <th className="px-4 py-2 text-left">Phone Number </th>
                         <th className="px-4 py-2 text-left">Date of Birth</th>
@@ -18,6 +19,7 @@ const CustomerData = ({ customers }) => {
                 <tbody>
                     {customers.map((customer, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
+                            <td className="px-4 py-2">{customer.id}</td>
                             <td className="px-4 py-2">{customer.name}</td>
                             <td className="px-4 py-2">{customer.phoneNumber}</td>
                             <td className="px-4 py-2">{customer.dob instanceof Date 
@@ -36,6 +38,7 @@ const CustomerData = ({ customers }) => {
 CustomerData.propTypes = {
     customers: PropTypes.arrayOf(
         PropTypes.shape({
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             phoneNumber: PropTypes.string.isRequired,
             dob: PropTypes.instanceOf(Date).isRequired,

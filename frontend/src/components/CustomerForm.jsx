@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const CustomerForm = ({ addCustomer }) => {
     const [formData, setFormData] = useState({
+        id: '',
         name: '',
         phoneNumber: '',
         dob: '',
@@ -29,6 +30,7 @@ const CustomerForm = ({ addCustomer }) => {
         }
 
         axios.post('http://localhost:5000/api/customers/', {
+            id: formData.id,
             name: formData.name,
             phoneNumber: formData.phoneNumber,
             dob: new Date(formData.dob),
