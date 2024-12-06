@@ -1,7 +1,7 @@
 import LoanService from "../service/LoanService.js";
 import StatusCodes from 'http-status-codes';
 
-const getAllCustomers = async (req, res) => {
+const getAllLoans = async (req, res) => {
     return res
         .status(StatusCodes.OK)
         .json(
@@ -9,7 +9,7 @@ const getAllCustomers = async (req, res) => {
         )
 }
 
-const createCustomer = async (req, res) => {
+const createLoan = async (req, res) => {
     return res
         .status(StatusCodes.CREATED)
         .json(
@@ -18,6 +18,6 @@ const createCustomer = async (req, res) => {
 }
 
 export default {
-    getAllCustomers,
-    createCustomer
+    getAllLoans,
+    createLoan
 }

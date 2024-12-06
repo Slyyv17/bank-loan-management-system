@@ -51,12 +51,12 @@ const CustomerForm = ({ addCustomer }) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="w-[600px] h-fit bg-white flex flex-col items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg"
+            className="w-[600px] h-fit bg-white flex flex-col font-pryFF items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg"
         >
             <h1 className="text-xl font-bold">Customer Form</h1>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="name" className="text-sm font-medium">Name</label>
+                <label htmlFor="name" className="text-sm font-medium">Fullname</label>
                 <input 
                     type="text" 
                     id="name" 
@@ -64,12 +64,12 @@ const CustomerForm = ({ addCustomer }) => {
                     value={formData.name}
                     required
                     onChange={handleChange}
-                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
+                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-secClr" 
                 />
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="phone-number" className="text-sm font-medium">Phone Number</label>
+                <label htmlFor="phone-number" className="text-sm font-medium">Contact Info</label>
                 <input 
                     type="tel" 
                     id="phone-number" 
@@ -78,7 +78,7 @@ const CustomerForm = ({ addCustomer }) => {
                     required
                     value={formData.phoneNumber}
                     onChange={handleChange}
-                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
+                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-secClr" 
                 />
             </div>
 
@@ -91,7 +91,7 @@ const CustomerForm = ({ addCustomer }) => {
                     value={formData.dob}
                     required
                     onChange={handleChange}
-                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
+                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-secClr" 
                 />
             </div>
 
@@ -104,13 +104,13 @@ const CustomerForm = ({ addCustomer }) => {
                     value={formData.jobTitle}
                     required
                     onChange={handleChange}
-                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
+                    className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-secClr" 
                 />
             </div>
 
             <button 
                 type="submit" 
-                className="w-full px-6 py-3 mt-4 text-lg font-semibold text-white bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600"
+                className="w-full px-6 py-3 mt-4 text-lg font-semibold cursor-pointer rounded-xl text-mainClr bg-secClr"
             >
                 Submit
             </button>

@@ -1,10 +1,48 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, {useState} from "react";
+import PropTypes from 'prop-types';
+import axios from "axios";
 
-const LoanApplicationForm = () => {
-    return (
+const LoanApplicationForm = ({ addLoanApp }) => {
+    const [formData, setFormData] = useState({
+        customerId: '',
+        loanId: '',
+        loanOfficerId: '',
+        reviewDate: '',
+        status: '',
+    }) 
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (Object.values(formData).some(field => !field)) {
+            alert('Please fill in all fields before submitting.');
+            return;
+        }
+        axios.post('http://localhost:5000/api/loanApplication', formData)
+        .then((response) => {
+            console.log('Loan Application submitted', response.data);
+            addLoanApp(response.data);
+            alert('Loan Application submitted');
+            setFormData({ customerId: '', loanId: '', loanOfficerId: '', reviewDate: '', status: '' });
+        })
+        .catch((error) => {
+            console.error('Error submitting loan application:', error);
+            alert('Failed to submit loan application. Please try again.');
+        });
+    };
+
+    return (  
         <div>
-            <form className="w-[600px] h-fit bg-white flex flex-col items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg">
+            <form
+                onSubmit={handleSubmit}
+                className="w-[600px] h-fit bg-white flex flex-col items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg">
             <div className="flex items-center justify-center">
                 <h1 className="text-xl font-bold"> Loan Application Form </h1>
             </div>
@@ -14,7 +52,9 @@ const LoanApplicationForm = () => {
                 <input 
                 type="text" 
                 id="customer-id" 
-                name="customer-id"
+                    name="customerId"
+                    value={formData.customerId}
+                onChange={handleChange}    
                 className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
                 />
             </div>
@@ -24,7 +64,9 @@ const LoanApplicationForm = () => {
                 <input 
                 type="text" 
                 id="loan-id" 
-                name="loan-id"
+                    name="loanId"
+                        value={formData.loanId}
+                    onChange={handleChange}  
                 className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
                 />
             </div>
@@ -34,37 +76,21 @@ const LoanApplicationForm = () => {
                 <input 
                 type="text" 
                 id="loanOfficer-id" 
-                name="loanOfficer-id"
+                    name="loanOfficerId"
+                    value={formData.loanOfficerId}
+                    onChange={handleChange}  
                 className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
                 />
             </div>
 
             <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="name" className="text-sm font-medium">Fullname</label>
-                <input 
-                type="text" 
-                id="name" 
-                name="name"
-                className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
-            />
-            </div>
-
-            <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="phone-number" className="text-sm font-medium">Phone Number</label>
-                <input 
-                type="tel" 
-                id="phone-number" 
-                name="phoneNumber"
-                className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
-            />
-            </div>
-
-            <div className="flex flex-col items-start justify-center w-full gap-2">
-                <label htmlFor="dob" className="text-sm font-medium">Review Date</label>
+                <label htmlFor="review-date" className="text-sm font-medium">Review Date</label>
                 <input 
                 type="date" 
                 id="review-date" 
-                name="review-date"
+                    name="reviewDate"
+                    value={formData.reviewDate}
+                    onChange={handleChange}  
                 className="w-full h-10 px-2 text-lg uppercase border border-gray-400 rounded-md focus:outline-blue-500" 
             />
             </div>
@@ -74,7 +100,9 @@ const LoanApplicationForm = () => {
                 <input 
                 type="text" 
                 id="status" 
-                name="status"
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}  
                 className="w-full h-10 px-2 text-lg border border-gray-400 rounded-md focus:outline-blue-500" 
             />
             </div>
@@ -89,5 +117,9 @@ const LoanApplicationForm = () => {
         </div>
     )
 }
+
+LoanApplicationForm.propTypes = {
+    addLoanApp: PropTypes.func.isRequired,
+};
 
 export default LoanApplicationForm;

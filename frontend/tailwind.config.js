@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        pryClr: '#06457d',
+        secClr: '#18cb96',
+        tetClr: '#373643',
+        mainClr: '#ffffff',
+      },
+      fontFamily: {
+        pryFF: ["Space Grotesk", "sans-serif"],
+      }
+    },
   },
   plugins: [],
 }

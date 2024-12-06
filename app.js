@@ -15,6 +15,9 @@ import cors from 'cors';
 
 import CustomerRouter from './router/CustomerRouter.js';
 import LoanRouter from './router/LoanRouter.js'
+import LoanOfficerRouter from './router/LoanOfficerRouter.js'
+import LoanAppRouter from './router/LoanAppRouter.js'
+import RepaymentRouter from './router/RepaymentRouter.js'
 
 import ErrorHandlerMiddleware from './middleware/error-handler.js';
 import NotFoundMiddleware from './middleware/not-found.js';
@@ -31,6 +34,9 @@ app.use(express.static(path.resolve(__dirname, './frontend/dist')));
 
 app.use('/api/customers', CustomerRouter);
 app.use('/api/loan', LoanRouter);
+app.use('/api/loanOfficer', LoanOfficerRouter);
+app.use('/api/loanApplication', LoanAppRouter);
+app.use('/api/repayment', RepaymentRouter);
 
 app.use(NotFoundMiddleware);
 app.use(ErrorHandlerMiddleware);
