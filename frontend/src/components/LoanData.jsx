@@ -29,6 +29,22 @@ const LoanData = () => {
         return <div>{error}</div>;
     }
 
+    const bgStatusColors = (status) => {
+        console.log("Status received:", status); // Debugging log
+        switch (status) {
+            case 'Approved':
+                return 'bg-green-100';
+            case 'Pending':
+                return 'bg-yellow-100';
+            case 'Rejected':
+                return 'bg-red-100';
+            case 'Unverified':
+                return 'bg-blue-100';
+            default:
+                return 'bg-gray-100';
+        }
+    }
+
     return (
         <div className="pb-4 overflow-x-auto">
             <h1 className="pt-2 pb-1 text-3xl font-bold text-center font-pryFF">Loan Data</h1>
@@ -50,7 +66,7 @@ const LoanData = () => {
                             <td className="px-4 py-2">{loan.loanTerm}</td>
                             <td className="px-4 py-2">{loan.interestRate}</td>
                             <td className="px-4 py-2">{loan.collateral}</td>
-                            <td className="px-4 py-2">{loan.status}</td>
+                            <td className={`px-4 py-2 ${bgStatusColors(loan.status)}`}>{loan.status}</td>
                             <td className="px-4 py-2">{loan.approvedAmt}</td>
                         </tr>
                     ))}

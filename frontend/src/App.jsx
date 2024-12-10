@@ -109,39 +109,64 @@ function App() {
                 <>
                     <div className="flex flex-wrap items-center justify-between w-full p-4 border-b border-gray-300">
                         <img className="w-20 h-20" src={logo} alt="Fast Loan Logo" />
-                        <div className="flex flex-wrap mt-3 text-lg font-bold w-fit g md:mt-0 font-pryFF">
+                        <div className="flex flex-wrap mt-3 text-lg font-bold w-fit md:mt-0 font-pryFF">
                             <button
-                                className={`px-4 py-2 ${activeSection === "customers" ? "text-black" : "text-secClr"}`}
+                                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                                    activeSection === "customers"
+                                    ? "bg-secClr text-mainClr"
+                                    : "text-secClr hover:bg-secClr rounded-full hover:text-mainClr"
+                                }`}
                                 onClick={() => setActiveSection("customers")}
                             >
                                 Customers
                             </button>
+                                
                             <button
-                                className={`px-10 py-2 ${activeSection === "loans" ? "text-black" : "text-secClr"}`}
+                                className={`px-10 py-2 rounded-full transition-all duration-300 ${
+                                    activeSection === "loans"
+                                    ? "bg-secClr text-mainClr"
+                                    : "text-secClr hover:bg-secClr rounded-full hover:text-mainClr"
+                                }`}
                                 onClick={() => setActiveSection("loans")}
                             >
                                 Loans
                             </button>
+                            
                             <button
-                                className={`px-4 py-2 ${activeSection === "loanOfficers" ? "text-black" : "text-secClr"}`}
+                                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                                    activeSection === "loanOfficers"
+                                    ? "bg-secClr text-mainClr"
+                                    : "text-secClr rounded-full hover:bg-secClr hover:text-mainClr"
+                                }`}
                                 onClick={() => setActiveSection("loanOfficers")}
                             >
                                 Loan Officers
                             </button>
+                                
                             <button
-                                className={`px-4 py-2 ${activeSection === "loanApplications" ? "text-black" : "text-secClr"}`}
+                                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                                    activeSection === "loanApplications"
+                                    ? "bg-secClr text-mainClr"
+                                    : "text-secClr hover:bg-secClr rounded-full hover:text-mainClr"
+                                }`}
                                 onClick={() => setActiveSection("loanApplications")}
                             >
                                 Loan Applications
                             </button>
+                                
                             <button
-                                className={`px-4 py-2 ${activeSection === "repayments" ? "text-black" : "text-secClr"}`}
+                                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                                    activeSection === "repayments"
+                                    ? "bg-secClr text-mainClr"
+                                    : "text-secClr hover:bg-secClr rounded-full hover:text-mainClr"
+                                }`}
                                 onClick={() => setActiveSection("repayments")}
                             >
                                 Repayments
                             </button>
                         </div>
                     </div>
+
 
                     {activeSection === "customers" && (
                         <div className="flex flex-col items-center justify-center">
