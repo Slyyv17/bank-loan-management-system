@@ -48,14 +48,14 @@ const LoanForm = ({ addLoan }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-[600px] font-pryFF h-fit bg-white flex flex-col items-center justify-center gap-4 border border-gray-400 p-6 rounded-md shadow-lg">
+        <form onSubmit={handleSubmit} className="w-[600px] font-pryFF h-fit bg-white flex flex-col items-center justify-center gap-4 border capitalize border-gray-400 p-6 rounded-md shadow-lg">
             <div className="flex items-center justify-center">
                 <h1 className="text-xl font-bold">Loan Form</h1>
             </div>
 
             {['loanType', 'loanAmount', 'purpose', 'loanTerm', 'interestRate', 'collateral', 'approvedAmt'].map((field, idx) => (
                 <div key={idx} className="flex flex-col items-start justify-center w-full gap-2">
-                    <label htmlFor={field} className="text-sm font-medium">{field.replace(/([A-Z])/g, ' $1').toUpperCase()}</label>
+                    <label htmlFor={field} className="text-sm font-medium">{field.replace(/([A-Z])/g, ' $1')}</label>
                     <input
                         type={field === 'loanAmount' || field === 'loanTerm' || field === 'interestRate' || field === 'approvedAmt' ? 'number' : 'text'}
                         id={field}

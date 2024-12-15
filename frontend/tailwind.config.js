@@ -12,7 +12,8 @@ export default {
         mainClr: '#ffffff',
       },
       fontFamily: {
-        pryFF: ["Space Grotesk", "sans-serif"],
+        pryFF: ["Satoshi", "sans-serif"],
+        secFF: ["Space Grotesk", "sans-serif"],
       },
     },
   },
